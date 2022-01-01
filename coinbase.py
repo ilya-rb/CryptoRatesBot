@@ -43,9 +43,6 @@ class CoinbaseTicker(Ticker):
         payload = {PARAM_CURRENCY: self.pair.base}
         response = requests.get(url=RATES_BASE_URL, params=payload).json()
 
-        print(f"HTTP call :: {RATES_BASE_URL} PAYLOAD :: {payload}")
-        print(f"RESPONSE :: {response}")
-
         if KEY_ERRORS in response:
             errors = map(lambda error: error[KEY_MESSAGE], response[KEY_ERRORS])
             return None, errors
